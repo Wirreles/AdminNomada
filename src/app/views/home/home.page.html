@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; color: #000;">Administrador</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" fill="clear" class="logout-button">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="welcome-section">
+    <h2>¡Bienvenido al administrador del Bar Club!</h2>
+    <div *ngIf="clima" class="weather-info">
+      <img [src]="clima.current.condition.icon" alt="Icono del clima">
+      <p>
+        {{ clima.location.name }}, {{ clima.location.country }} |
+        {{ clima.current.temp_c }}°C |
+        {{ clima.current.condition.text }}
+      </p>
+    </div>
+    <div *ngIf="errorMensaje" class="error-message">
+      <p>{{ errorMensaje }}</p>
+    </div>
+  </div>
+
+
+  <div style="text-align: center; margin-top: 20px;">
+    <ion-button (click)="navigateToExternal('https://www.masnomada.com')" class="irPag">
+      Ir a la página
+    </ion-button>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+
+      <!-- Control Stock -->
+      <ion-col size="6" *ngIf="showCupon">
+        <ion-card (click)="navigateTo('cupon')" class="centro-vertical">
+          <ion-icon name="pricetags-outline" class="icono-grande"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Cupones</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <!-- Ordenes de Compra -->
+      <ion-col size="6" *ngIf="showOrdenes">
+        <ion-card (click)="navigateTo('orderAdmin')" class="centro-vertical">
+          <ion-icon name="cart-outline" class="icono-grande"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Ordenes de Compra</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

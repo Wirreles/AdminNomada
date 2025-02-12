@@ -1,0 +1,236 @@
+/* Estilos generales */
+#main-content {
+  padding: 20px;
+}
+
+/* General container for the filters */
+.filtro-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;  /* Spacing between filter items */
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for each input field */
+.custom-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-label {
+  margin-bottom: 5px;
+  color: #3B82F6;
+  font-weight: bold;
+}
+
+.custom-input1 {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.custom-input1:focus {
+  outline: none;
+  border-color: #3B82F6;
+  box-shadow: 0px 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.custom-input1::placeholder {
+  color: #999;
+}
+
+/* Styles for the search button */
+.search-button {
+  background-color: #3B82F6;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.search-button:hover {
+  background-color: #3366cc;
+}
+
+.search-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 4px rgba(59, 130, 246, 0.4);
+}
+
+
+/* Tabla personalizada */
+.custom-table {
+  width: 100%;
+  margin-top: 0;
+  padding-top: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.header-row {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.header-row ion-col {
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  border-bottom: 2px solid #ddd;
+}
+
+.data-row {
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.data-row:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
+.data-row ion-col {
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.data-row ion-button {
+  width: 100%;
+  margin-top: 5px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  --font-size: 14px;
+}
+
+/* Contenedor de botones */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container ion-button {
+  width: 100%;
+  margin-top: 8px; /* Separación entre botones */
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  --font-size: 14px;
+}
+
+
+
+/* Fondo del overlay del modal */
+.user-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Contenedor del modal */
+.user-modal {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+/* Encabezado del modal */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  color:black;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Estilos para el contenido de detalles del usuario */
+.user-details p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.user-details strong {
+  font-weight: 600;
+}
+
+/* Fondo del overlay del modal */
+.order-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Contenedor del modal */
+.order-modal {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80%;
+  overflow: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+}
+
+.order-details p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.order-details strong {
+  font-weight: 600;
+}
+
+

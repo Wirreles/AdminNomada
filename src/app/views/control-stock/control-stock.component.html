@@ -1,0 +1,148 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Botón para abrir el menú -->
+      <ion-menu-button (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Catalogo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" fill="clear" class="logout-button">
+        <ion-icon color="danger" name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu side="start" menuId="adminMenu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Admin Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <!-- Control de Stock -->
+      <ion-item *ngIf="showStock" (click)="navigateTo('stock')">
+        <ion-icon name="cube-outline" slot="start"></ion-icon>
+        Control Stock
+      </ion-item>
+
+      <!-- Órdenes de Compra -->
+      <ion-item *ngIf="showOrdenes" (click)="navigateTo('orderAdmin')">
+        <ion-icon name="cart-outline" slot="start"></ion-icon>
+        Órdenes de Compra
+      </ion-item>
+
+      <!-- Gestionar Elementos -->
+      <ion-item *ngIf="showElementos" (click)="navigateTo('elementos')">
+        <ion-icon name="construct-outline" slot="start"></ion-icon>
+        Gestionar Elementos
+      </ion-item>
+
+      <!-- Home Administrador -->
+      <ion-item (click)="navigateTo('home')">
+        <ion-icon name="home-outline" slot="start"></ion-icon>
+        Home Administrador
+      </ion-item>
+
+      <!-- Página Web -->
+      <ion-item (click)="navigateTo('homeCliente')">
+        <ion-icon name="globe-outline" slot="start"></ion-icon>
+        Página Web
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content id="main-content" class="ion-padding">
+
+  <div style="margin: 20px;">
+    <ion-button (click)="toggleForm()" expand="block" shape="round" color="primary">
+      {{ isEditMode ? 'Editar Producto' : 'Añadir Producto' }}
+    </ion-button>
+  </div>
+
+  <!-- Formulario para añadir o editar productos -->
+  <ion-card *ngIf="showForm">
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input [(ngModel)]="nuevoItem.nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Precio</ion-label>
+      <ion-input [(ngModel)]="nuevoItem.precio" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descripcion</ion-label>
+      <ion-input [(ngModel)]="nuevoItem.descripcion" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Imagen</ion-label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </ion-item>
+    <div style="margin: 20px;">
+      <ion-button (click)="crearOEditarItem()" expand="block" shape="round" color="success">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+      </ion-button>
+    </div>
+  </ion-card>
+
+<!-- Barra de Filtros -->
+<ion-grid class="filtro-bar" style="margin-bottom: 0;">
+  <ion-row>
+    <ion-col size="12" size-md="3">
+      <ion-item>
+        <ion-label>Precio</ion-label>
+        <ion-select [(ngModel)]="filtros.precio" (ionChange)="aplicarFiltros()">
+          <ion-select-option value="asc">Menor a mayor</ion-select-option>
+          <ion-select-option value="desc">Mayor a menor</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+
+    <ion-col size="12" size-md="3" class="ion-text-end">
+      <ion-button (click)="limpiarFiltros()" color="tertiary">Limpiar Filtros</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+<ion-grid class="product-card-grid">
+  <ion-row>
+    <ion-col size="12" size-md="6" size-lg="4" *ngFor="let item of stockItems$ | async">
+      <ion-card [ngClass]="{'inactive-product': !item.activo}" class="product-card">
+        <img [src]="item.imageUrl" *ngIf="item.imageUrl" alt="Imagen del producto">
+
+        <ion-card-header>
+          <ion-card-title>{{ item.nombre }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p><strong>Precio:</strong> {{ item.precio | currency }}</p>
+          <p><strong>Estado:</strong></p>
+          <ion-select [(ngModel)]="item.activo" (ionChange)="updateActivo(item)" class="custom-select">
+            <ion-select-option [value]="true">Activo</ion-select-option>
+            <ion-select-option [value]="false">Inactivo</ion-select-option>
+          </ion-select>
+        </ion-card-content>
+
+        <ion-row class="action-row">
+          <ion-col>
+            <ion-button expand="block" (click)="editarItem(item)" color="tertiary">Editar</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" (click)="eliminarItem(item.id)" color="danger">Eliminar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+  <div *ngIf="cargando" style="text-align: center;">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+</ion-content>

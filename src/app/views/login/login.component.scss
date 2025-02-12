@@ -1,0 +1,270 @@
+ion-content {
+  --background: #E4E6E8;
+  --padding-top: 40px; /* Añade espacio entre el header y el contenido */
+}
+
+.custom-toolbar {
+  --background: #000;
+  color: #fff;
+}
+
+.custom-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Asegura que ocupe toda la altura disponible */
+}
+
+.login-grid {
+  max-width: 400px; /* Limita el ancho del contenido */
+  width: 100%;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #000;
+  font-size: 22px;
+}
+
+.register-link {
+  color: #F45A43; /* Color naranja */
+}
+
+.facebook-button {
+  --background: #3b5998;
+  --border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.google-button {
+  --background: #DB4437;
+  --border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  --background: #fff;
+  --border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+ion-input {
+  --padding-start: 12px;
+  --padding-end: 12px;
+}
+
+.password-icon {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.login-button {
+  color: #fff;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+p a {
+  color: #F45A43;
+  text-decoration: underline;
+}
+
+/* Estilo mejorado para el menú desplegable del perfil */
+.profile-dropdown {
+  position: fixed; /* Asegura que se despliegue sobre el contenido */
+  top: 45px; /* Ajusta la distancia desde la parte superior */
+  right: 10px; /* Ajusta la posición desde la derecha */
+  background-color: white;
+  border-radius: 15px; /* Bordes redondeados */
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2000; /* Para asegurarse que esté por encima de otros elementos */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 200px; /* Ajustar según el diseño */
+}
+
+/* Estilo de los botones dentro del perfil */
+.custom-button {
+  margin-bottom: 5px;
+  background-color: black !important; /* Fondo negro */
+  color: white !important; /* Texto blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  text-transform: uppercase; /* Convierte el texto a mayúsculas */
+}
+
+.custom-button:last-child {
+  margin-bottom: 0;
+}
+
+.custom-button:hover {
+  background-color: #333 !important; /* Fondo ligeramente más claro al pasar el mouse */
+}
+
+ /* Estilo del carrito de compras */
+ .cart-card {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  height: calc(85% - 120px);
+  width: 370px;
+  background-color: white;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 2000;
+  padding: 20px;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+    /* Controles de cantidad en el carrito */
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .quantity-control ion-button {
+      margin: 0 5px;
+    }
+
+    .quantity-control ion-label {
+      margin: 0 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* Estilos generales */
+.logo-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.icon-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Coloca cada sección en una fila separada */
+  .logo-column, .nav-buttons-column, .icon-buttons-column {
+    text-align: center;
+  }
+
+  /* Alinea los iconos en el centro para pantallas pequeñas */
+  .icon-buttons {
+    justify-content: center;
+  }
+}
+
+
+ion-footer {
+  background-color: #222428;
+  padding: 10px; /* Reducir el padding para disminuir el alto */
+  color: #ffffff;
+
+  .footer-column {
+    text-align: left;
+
+    h4 {
+      font-size: 1.2em; /* Disminuir ligeramente el tamaño de fuente */
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 10px; /* Reducir el margen inferior */
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      li {
+        margin: 4px 0; /* Ajuste menor en margen */
+        font-size: 0.9em; /* Reducir ligeramente el tamaño de fuente */
+        color: #cccccc;
+        background-color: #333333;
+        padding: 4px 8px; /* Ajuste de padding para reducir espacio */
+        border-radius: 4px;
+
+        &:hover {
+          background-color: #444444;
+          color: #ffffff;
+        }
+      }
+
+      a {
+        color: #80bfff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+
+        ion-icon {
+          margin-right: 6px; /* Reducir espacio del icono */
+          font-size: 1em; /* Ajuste menor en tamaño del icono */
+        }
+
+        &:hover {
+          color: #ffffff;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .footer-logo {
+      width: 100px; /* Reducir tamaño del logo */
+      height: auto;
+      margin-top: 8px;
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 15px; /* Ajuste de margen para reducir altura */
+    font-size: 0.8em; /* Reducir el tamaño de fuente */
+    color: #cccccc;
+    text-align: center;
+  }
+
+  .footer-bottom a {
+    color: #80bfff;
+    text-decoration: none;
+
+    &:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+  }
+
+  /* Ajustes Responsivos */
+  @media (max-width: 768px) {
+    .footer-column {
+      text-align: center;
+      margin-bottom: 10px; /* Ajuste menor en el margen inferior */
+
+      ul {
+        align-items: center;
+      }
+    }
+  }
+}

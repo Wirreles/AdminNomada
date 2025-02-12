@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Botón para abrir el menú -->
+      <ion-menu-button (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Gestión de Órdenes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" fill="clear" class="logout-button">
+        <ion-icon color="danger" name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu side="start" menuId="adminMenu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Admin Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item *ngIf="showCupones" (click)="navigateTo('cupon')">
+        <ion-icon name="pricetags-outline" slot="start"></ion-icon>
+        Cupones
+      </ion-item>
+
+      <!-- Home Administrador -->
+      <ion-item (click)="navigateTo('home')">
+        <ion-icon name="home-outline" slot="start"></ion-icon>
+        Home Administrador
+      </ion-item>
+
+      <!-- Página Web -->
+      <ion-item (click)="navigateToExternal('https://www.masnomada.com')">
+        <ion-icon name="globe-outline" slot="start"></ion-icon>
+        Página Web
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content id="main-content" class="ion-padding">
+
+  <div class="filtro-bar">
+    <div class="form-item custom-input">
+      <label for="email" class="custom-label">Buscar por Email</label>
+      <input id="email" class="custom-input1" type="text" [(ngModel)]="searchEmail" placeholder="Ingrese email">
+    </div>
+
+    <div class="form-item custom-input">
+      <label for="telf" class="custom-label">Buscar por Telefono</label>
+      <input id="telf" class="custom-input1" type="number" [(ngModel)]="searchTelf" placeholder="Ingrese Telefono">
+    </div>
+
+    <button class="search-button" (click)="filterOrders()">Buscar</button>
+  </div>
+
+
+  <ion-grid class="custom-table">
+    <ion-row class="header-row">
+      <ion-col size="4">Order ID</ion-col>
+      <ion-col size="4">Estado del Pago</ion-col>
+      <ion-col size="4">Acciones</ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let order of filteredOrders.length ? filteredOrders : orders" class="data-row">
+      <ion-col size="4">{{ order.id }}</ion-col>
+      <ion-col size="4">{{ order.status }}</ion-col>
+      <ion-col size="4" class="button-container">
+        <ion-button expand="block" (click)="viewOrder(order.id)">Ver Orden</ion-button> <!-- Nuevo botón -->
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="filteredOrders.length === 0 && (searchEmail || searchTelf)">
+    <p>No se encontraron órdenes para el usuario.</p>
+  </div>
+
+  <div *ngIf="cargando" style="text-align: center;">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+
+</ion-content>
+
+<!-- Modal de la Orden -->
+<div *ngIf="isOrderModalOpen" class="order-modal-overlay">
+  <div class="order-modal">
+    <div class="modal-header">
+      <h2>Detalles de la Orden</h2>
+      <button class="close-button" (click)="closeOrderModal()">Cerrar</button>
+    </div>
+    <div *ngIf="selectedOrder" class="order-details">
+      <p><strong>Nombre:</strong> {{ selectedOrder.nombre }}</p>
+      <p><strong>Apellido:</strong> {{ selectedOrder.apellido }}</p>
+      <p><strong>Teléfono:</strong> {{ selectedOrder.telefono }}</p>
+      <p><strong>Método de Entrega:</strong> {{ selectedOrder.deliveryMethod }}</p>
+      <p><strong>Email:</strong> {{ selectedOrder.email }}</p>
+      <p><strong>Código Isla:</strong> {{ selectedOrder.codigoFinal }}</p>
+      <p><strong>Ciudad:</strong> {{ selectedOrder.ciudad }}</p>
+      <p><strong>Código Postal:</strong> {{ selectedOrder.codigoPostal }}</p>
+      <p><strong>Provincia:</strong> {{ selectedOrder.provincia }}</p>
+      <p><strong>Departamento:</strong> {{ selectedOrder.departamento }}</p>
+      <p><strong>Producto:</strong> {{ selectedOrder.nombreProducto }}</p>
+      <p><strong>Precio Original:</strong> {{ selectedOrder.originalPrice | currency }}</p>
+      <p><strong>Precio Final:</strong> {{ selectedOrder.finalPrice | currency }}</p>
+      <p><strong>Descuento Aplicado:</strong> {{ selectedOrder.discountAmount }}%</p>
+      <p><strong>Estado del Pago:</strong> {{ selectedOrder.status }}</p>
+      <p><strong>Preferencia ID:</strong> {{ selectedOrder.preferenceId }}</p>
+      <p><strong>Orden ID:</strong> {{ selectedOrder.orderId }}</p>
+      <p><strong>Fecha de Creación:</strong> {{ selectedOrder.createdAt | date:'short' }}</p>
+    </div>
+  </div>
+</div>
+

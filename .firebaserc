@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "otra-app-645d0": {
+      "hosting": {
+        "app": [
+          "clases-develop"
+        ]
+      }
+    },
+    "nomadamuebles-c2c81": {
+      "hosting": {
+        "app": [
+          "nomadamuebles-c2c81"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "nomadamuebles-c2c81"
+  }
+}

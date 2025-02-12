@@ -1,0 +1,96 @@
+
+
+.welcome-section {
+  display: flex;
+  flex-direction: column; /* Apila los elementos en vertical */
+  align-items: center;   /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  height: 30%;            /* Asegúrate de que ocupe toda la altura del contenedor */
+}
+
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color:white;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+.centro-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Estilos para el título del header */
+ion-title {
+  font-size: 24px;
+  color: white; /* Cambia el color del texto */
+}
+
+
+/* Estilos para los elementos ion-card */
+ion-card {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los íconos */
+.icono-grande {
+  font-size: 3em;
+  color: #3498db; /* Cambia el color del ícono */
+}
+
+/* Estilos para los títulos de las tarjetas */
+ion-card-title {
+  font-size: 18px;
+  color: black; /* Cambia el color del texto del título */
+}
+
+/* Estilos para el enlace de descarga PDF */
+ion-card-content a {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #27ae60; /* Cambia el color del enlace */
+  font-weight: bold;
+}
+
+/* Estilos cuando se pasa el ratón por encima del enlace */
+ion-card-content a:hover {
+  text-decoration: underline;
+  color: #2ecc71; /* Cambia el color al pasar el ratón por encima */
+}
+
+.irPag {
+  --background: #28a745;
+  --color: white; /* Color del texto */
+  font-size: 1.2em;
+  width: 200px;
+  margin: 0 auto; /* Centramos el botón */
+}
+
