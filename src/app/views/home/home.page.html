@@ -40,10 +40,20 @@
   <ion-grid>
     <ion-row>
 
+            <!-- Control Stock -->
+      <ion-col size="6" *ngIf="showStock">
+        <ion-card (click)="navigateTo('stock')" class="centro-vertical">
+          <ion-icon name="pricetags-outline" class="icono-grande"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Control Stock</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
       <!-- Control Stock -->
       <ion-col size="6" *ngIf="showCupon">
         <ion-card (click)="navigateTo('cupon')" class="centro-vertical">
-          <ion-icon name="pricetags-outline" class="icono-grande"></ion-icon>
+          <ion-icon name="ticket-outline" class="icono-grande"></ion-icon>
           <ion-card-header>
             <ion-card-title>Cupones</ion-card-title>
           </ion-card-header>

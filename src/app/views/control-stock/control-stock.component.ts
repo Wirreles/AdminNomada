@@ -23,32 +23,39 @@ import { AuthService } from 'src/app/common/services/auth.service';
     IonRow,IonGrid,IonCol,IonCardHeader,IonCardTitle,IonCardContent, IonMenu]
 })
 export class ControlStockComponent implements OnInit {
-  stockItems$: Observable<any[]>;
+  stockItems$: Observable<Producto[]> = new Observable<Producto[]>();
 
-  nuevoItem : Producto = {
+  nuevoItem: Producto = {
     id: '',
+    tipo_isla: '',
     nombre: '',
+    imagen: '',
+    descrip_corta: '',
+    descripcion: '',
     precio: 0,
-    imageUrl: '',
-    descripcion:'',
-    activo: true // nuevo campo booleano
+    codigo: '',
+    caracteristicas: [],
+    activo: true,
   };
+
   selectedFile: File | null = null;
   showForm: boolean = false;
-  showCategoryForm: boolean = false; // Controla el formulario de categorías
+  showCategoryForm: boolean = false;
   cargando: boolean = false;
   isEditMode: boolean = false;
   currentItemId: string | null = null;
+  nuevaCaracteristica: string = '';
 
   filtros = {
     precio: '',
+    tipo_isla: ''
   };
 
   showStock: boolean = false;
   showOrdenes: boolean = false;
   showElementos: boolean = false;
 
-  currentUser: any = null; // Almacenar el usuario actual
+  currentUser: any = null;
 
   constructor(
     private firestoreService: FirestoreService,
@@ -58,17 +65,17 @@ export class ControlStockComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private menuController: MenuController,
-    private cdr: ChangeDetectorRef, // Añadido para refrescar la vista
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.obtenerStockItems();
-    this.cargarUsuario()
+    this.cargarUsuario();
     this.evaluarCondiciones();
   }
 
   obtenerStockItems() {
-    this.stockItems$ = this.firestoreService.getStockItems();
+    this.stockItems$ = this.firestoreService.getStockItems() as Observable<Producto[]>;
   }
 
   onFileSelected(event: any) {
@@ -78,11 +85,6 @@ export class ControlStockComponent implements OnInit {
   toggleForm() {
     this.showForm = !this.showForm;
   }
-
-  toggleCategoryForm() {
-    this.showCategoryForm = !this.showCategoryForm;
-  }
-
 
   async crearOEditarItem() {
     if (this.nuevoItem.nombre && this.nuevoItem.precio > 0) {
@@ -100,14 +102,14 @@ export class ControlStockComponent implements OnInit {
 
       // Subir imagen si se selecciona
       if (this.selectedFile) {
-        const filePath = `stock_images/${Date.now()}_${this.selectedFile.name}`;
+        const filePath = 'stock_images/${Date.now()}_${this.selectedFile.name}';
         const fileRef = this.storage.ref(filePath);
         const uploadTask = this.storage.upload(filePath, this.selectedFile);
         uploadTask.snapshotChanges().pipe(
           finalize(async () => {
             const downloadURL = await fileRef.getDownloadURL().toPromise();
             await this.firestoreService.updateStockItemImage(this.currentItemId, downloadURL);
-            this.nuevoItem.imageUrl = downloadURL;
+            this.nuevoItem.imagen = downloadURL;
             this.resetForm();
             await loading.dismiss();
           })
@@ -123,7 +125,7 @@ export class ControlStockComponent implements OnInit {
     await this.firestoreService.deleteStockItem(itemId);
   }
 
-  editarItem(item: any) {
+  editarItem(item: Producto) {
     this.isEditMode = true;
     this.currentItemId = item.id;
     this.nuevoItem = { ...item };
@@ -131,29 +133,39 @@ export class ControlStockComponent implements OnInit {
   }
 
   resetForm() {
-    this.nuevoItem = { id: '',nombre: '', precio: 0, descripcion: '',imageUrl: '', activo: true };
+    this.nuevoItem = {
+      id: '',
+      tipo_isla: '',
+      nombre: '',
+      imagen: '',
+      descrip_corta: '',
+      descripcion: '',
+      precio: 0,
+      codigo: '',
+      caracteristicas: [],
+      activo: false
+    };
     this.selectedFile = null;
     this.isEditMode = false;
     this.currentItemId = null;
     this.showForm = false;
   }
 
-  updateActivo(item: any) {
+  updateActivo(item: Producto) {
     this.firestoreService.updateStockItem(item.id, { activo: item.activo })
-      .then(() => {
-        console.log('Estado del producto actualizado correctamente');
-      })
-      .catch(error => {
-        console.error('Error actualizando el estado del producto: ', error);
-      });
+      .then(() => console.log('Estado del producto actualizado correctamente'))
+      .catch(error => console.error('Error actualizando el estado del producto: ', error));
   }
 
   aplicarFiltros() {
     this.stockItems$ = this.firestoreService.getStockItems().pipe(
-      map(items => {
+      map((items: Producto[]) => {
         let filtrados = items;
 
-        // Ordenar por precio
+        if (this.filtros.tipo_isla) {
+          filtrados = filtrados.filter(item => item.tipo_isla === this.filtros.tipo_isla);
+        }
+
         if (this.filtros.precio === 'asc') {
           filtrados.sort((a, b) => a.precio - b.precio);
         } else if (this.filtros.precio === 'desc') {
@@ -166,8 +178,19 @@ export class ControlStockComponent implements OnInit {
   }
 
   limpiarFiltros() {
-    this.filtros = { precio: '' };
-    this.aplicarFiltros();  // Refrescar la lista de productos
+    this.filtros = { precio: '', tipo_isla: '' };
+    this.aplicarFiltros();
+  }
+
+  agregarCaracteristica() {
+    if (this.nuevaCaracteristica.trim()) {
+      this.nuevoItem.caracteristicas.push(this.nuevaCaracteristica.trim());
+      this.nuevaCaracteristica = ''; // Limpiar input
+    }
+  }
+
+  eliminarCaracteristica(index: number) {
+    this.nuevoItem.caracteristicas.splice(index, 1);
   }
 
 

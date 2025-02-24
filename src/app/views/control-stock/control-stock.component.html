@@ -65,29 +65,72 @@
   <!-- Formulario para añadir o editar productos -->
   <ion-card *ngIf="showForm">
     <ion-item>
-      <ion-label>Nombre</ion-label>
+      <ion-label position="floating">Nombre</ion-label>
       <ion-input [(ngModel)]="nuevoItem.nombre"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Precio</ion-label>
+      <ion-label position="floating">Tipo de Isla</ion-label>
+      <ion-select [(ngModel)]="nuevoItem.tipo_isla">
+        <ion-select-option value="soledad">Soledad</ion-select-option>
+        <ion-select-option value="victoria">Victoria</ion-select-option>
+        <ion-select-option value="malvina">Malvina</ion-select-option>
+        <ion-select-option value="trinidad">Trinidad</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
       <ion-input [(ngModel)]="nuevoItem.precio" type="number"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Descripcion</ion-label>
-      <ion-input [(ngModel)]="nuevoItem.descripcion" type="text"></ion-input>
+      <ion-label position="floating">Código</ion-label>
+      <ion-input [(ngModel)]="nuevoItem.codigo"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción Corta</ion-label>
+      <ion-input [(ngModel)]="nuevoItem.descrip_corta"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input [(ngModel)]="nuevoItem.descripcion"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label>Imagen</ion-label>
       <input type="file" (change)="onFileSelected($event)" />
     </ion-item>
+
+    <ion-item>
+      <ion-label>Características</ion-label>
+      <ion-input [(ngModel)]="nuevaCaracteristica" placeholder="Añadir característica"></ion-input>
+      <ion-button (click)="agregarCaracteristica()" color="primary" fill="outline">+</ion-button>
+    </ion-item>
+
+    <ion-list>
+      <ion-item *ngFor="let caracteristica of nuevoItem.caracteristicas; let i = index">
+        <ion-label>{{ caracteristica }}</ion-label>
+        <ion-button (click)="eliminarCaracteristica(i)" color="danger" fill="clear">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-label>Activo</ion-label>
+      <ion-toggle [(ngModel)]="nuevoItem.activo"></ion-toggle>
+    </ion-item>
+
     <div style="margin: 20px;">
       <ion-button (click)="crearOEditarItem()" expand="block" shape="round" color="success">
         {{ isEditMode ? 'Actualizar' : 'Guardar' }}
       </ion-button>
     </div>
   </ion-card>
+
 
 <!-- Barra de Filtros -->
 <ion-grid class="filtro-bar" style="margin-bottom: 0;">
@@ -113,7 +156,7 @@
   <ion-row>
     <ion-col size="12" size-md="6" size-lg="4" *ngFor="let item of stockItems$ | async">
       <ion-card [ngClass]="{'inactive-product': !item.activo}" class="product-card">
-        <img [src]="item.imageUrl" *ngIf="item.imageUrl" alt="Imagen del producto">
+        <img [src]="item.imagen" *ngIf="item.imagen" alt="Imagen del producto">
 
         <ion-card-header>
           <ion-card-title>{{ item.nombre }}</ion-card-title>

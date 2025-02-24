@@ -114,9 +114,9 @@ async createStockItem(item: any): Promise<string> {
   return productId;  // Return the ID of the created product
 }
 
-async updateStockItemImage(itemId: string, imageUrl: string): Promise<void> {
+async updateStockItemImage(itemId: string, imagen: string): Promise<void> {
   const itemDocRef = doc(this.firestore, `stock/${itemId}`);
-  await updateDoc(itemDocRef, { imageUrl });
+  await updateDoc(itemDocRef, { imagen });
 }
 
 async deleteStockItem(itemId: string): Promise<void> {

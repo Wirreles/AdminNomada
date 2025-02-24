@@ -107,7 +107,7 @@ async signInWithGoogle() {
     console.log('Inicializando GoogleAuth...');
     // Asegúrate de que el clientId esté en el archivo google-services.json y concuerde con el de Firebase
     await GoogleAuth.initialize({
-      clientId: '1067763911405-5nfh0lmqssc0h12g6fvceo0cfeb8fhgk.apps.googleusercontent.com',
+      clientId: '775859610688-ttbj6hmihbfuid1ahvskg4fd0tu4epen.apps.googleusercontent.com',
       scopes: ['profile', 'email'],
     });
     console.log('GoogleAuth inicializado correctamente.');

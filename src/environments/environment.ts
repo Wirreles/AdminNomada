@@ -5,13 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBV614uyD0EoEMijDMf9TB8l0wAT7fxwRc",
-    authDomain: "nomadamuebles-d3f29.firebaseapp.com",
-    projectId: "nomadamuebles-d3f29",
-    storageBucket: "nomadamuebles-d3f29.firebasestorage.app",
-    messagingSenderId: "1067763911405",
-    appId: "1:1067763911405:web:334959233c6ff3fdc7dae4",
-    measurementId: "G-0KMZ85YN09"
+    apiKey: "AIzaSyABvmRsLlnbYZ2rqYb8LpRkx3GJgyynUN0",
+    authDomain: "pdf-manager-7fbf8.firebaseapp.com",
+    databaseURL: "https://pdf-manager-7fbf8-default-rtdb.firebaseio.com",
+    projectId: "pdf-manager-7fbf8",
+    storageBucket: "pdf-manager-7fbf8.appspot.com",
+    messagingSenderId: "775859610688",
+    appId: "1:775859610688:web:16f5eb9fdcda34115eeba5",
+    measurementId: "G-VP3479TRHV"
   }
 };
 
