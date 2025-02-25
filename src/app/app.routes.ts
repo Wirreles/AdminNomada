@@ -18,10 +18,10 @@ export const routes: Routes = [
     path: 'orderAdmin',
     loadComponent: () => import('./views/order-admin/order-admin.component').then((m) => m.OrderAdminComponent),
   },
-  {
-    path: 'cupon',
-    loadComponent: () => import('./views/cupon/cupon.component').then((m) => m.CuponComponent),
-  },
+  // {
+  //   path: 'cupon',
+  //   loadComponent: () => import('./views/cupon/cupon.component').then((m) => m.CuponComponent),
+  // },
   {
     path: '',
     redirectTo: 'login',

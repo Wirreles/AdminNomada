@@ -37,6 +37,7 @@ export class OrderAdminComponent implements OnInit {
   showCupones: boolean = false;
 
   currentUser: any = null; // Almacenar el usuario actual
+  showStock: boolean;
 
   constructor(private firestoreService: FirestoreService,
     private router: Router,
@@ -150,9 +151,9 @@ cargarUsuario() {
         evaluarCondiciones() {
           // Mostrar secciones solo si el usuario es "admin"
           if (this.currentUser?.tipo_usuario === 'admin') {
-            // this.showStock = true;
+            this.showStock = true;
             this.showOrdenes = true;
-            this.showCupones = true;
+            // this.showCupones = true;
           }
 
           // Refrescar la vista

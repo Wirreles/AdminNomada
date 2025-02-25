@@ -21,32 +21,20 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <!-- Control de Stock -->
-      <ion-item *ngIf="showStock" (click)="navigateTo('stock')">
-        <ion-icon name="cube-outline" slot="start"></ion-icon>
-        Control Stock
-      </ion-item>
-
       <!-- Órdenes de Compra -->
       <ion-item *ngIf="showOrdenes" (click)="navigateTo('orderAdmin')">
         <ion-icon name="cart-outline" slot="start"></ion-icon>
         Órdenes de Compra
       </ion-item>
 
-      <!-- Gestionar Elementos -->
-      <ion-item *ngIf="showElementos" (click)="navigateTo('elementos')">
-        <ion-icon name="construct-outline" slot="start"></ion-icon>
-        Gestionar Elementos
-      </ion-item>
-
-      <!-- Home Administrador -->
-      <ion-item (click)="navigateTo('home')">
+       <!-- Home Administrador -->
+       <ion-item (click)="navigateTo('home')">
         <ion-icon name="home-outline" slot="start"></ion-icon>
         Home Administrador
       </ion-item>
 
       <!-- Página Web -->
-      <ion-item (click)="navigateTo('homeCliente')">
+      <ion-item (click)="navigateToExternal('https://www.masnomada.com')">
         <ion-icon name="globe-outline" slot="start"></ion-icon>
         Página Web
       </ion-item>

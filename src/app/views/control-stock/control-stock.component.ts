@@ -232,5 +232,9 @@ cargarUsuario() {
         this.cdr.detectChanges();
       }
 
+      navigateToExternal(url: string) {
+        window.open(url, '_blank'); // '_blank' abre la URL en una nueva pestaña. Cambia a '_self' si quieres que sea en la misma pestaña.
+      }
+
 
 }

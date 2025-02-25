@@ -21,9 +21,14 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item *ngIf="showCupones" (click)="navigateTo('cupon')">
+      <!-- <ion-item *ngIf="showCupones" (click)="navigateTo('cupon')">
         <ion-icon name="pricetags-outline" slot="start"></ion-icon>
         Cupones
+      </ion-item> -->
+
+      <ion-item *ngIf="showStock" (click)="navigateTo('stock')">
+        <ion-icon name="pricetags-outline" slot="start"></ion-icon>
+        Control Stock
       </ion-item>
 
       <!-- Home Administrador -->
@@ -43,7 +48,7 @@
 
 <ion-content id="main-content" class="ion-padding">
 
-  <div class="filtro-bar">
+  <!-- <div class="filtro-bar">
     <div class="form-item custom-input">
       <label for="email" class="custom-label">Buscar por Email</label>
       <input id="email" class="custom-input1" type="text" [(ngModel)]="searchEmail" placeholder="Ingrese email">
@@ -55,7 +60,7 @@
     </div>
 
     <button class="search-button" (click)="filterOrders()">Buscar</button>
-  </div>
+  </div> -->
 
 
   <ion-grid class="custom-table">

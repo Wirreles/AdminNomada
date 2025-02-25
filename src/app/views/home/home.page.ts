@@ -103,7 +103,7 @@ export class HomePage implements OnInit {
  evaluarCondiciones() {
   // Mostrar secciones solo si el usuario es "admin"
   if (this.currentUser?.tipo_usuario === 'admin') {
-    this.showCupon = true;
+    // this.showCupon = true;
     this.showStock = true;
     this.showOrdenes = true;
   }
