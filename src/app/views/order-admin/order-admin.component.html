@@ -74,7 +74,11 @@
       <ion-col size="4">{{ order.id }}</ion-col>
       <ion-col size="4">{{ order.status }}</ion-col>
       <ion-col size="4" class="button-container">
-        <ion-button expand="block" (click)="viewOrder(order.id)">Ver Orden</ion-button> <!-- Nuevo botón -->
+        <ion-button expand="block" (click)="viewOrder(order.id)">Ver Orden</ion-button>
+        <ion-button expand="block" color="success" (click)="contactarPorWhatsApp(order.telefono)">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+          Contactar
+        </ion-button>
       </ion-col>
 
 

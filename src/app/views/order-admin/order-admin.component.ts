@@ -210,4 +210,17 @@ closeOrderModal() {
   this.selectedOrder = null;
 }
 
+contactarPorWhatsApp(numero: string): void {
+  if (!numero) {
+    console.warn("Número de teléfono no disponible");
+    return;
+  }
+
+  const mensaje = "Hola, nos conectamos con vos de parte de Nomada Muebles para coordinar el pedido!.";
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+  window.open(url, "_blank"); // Abre WhatsApp en una nueva pestaña
+}
+
+
 }
