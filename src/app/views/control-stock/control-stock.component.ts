@@ -102,7 +102,7 @@ export class ControlStockComponent implements OnInit {
 
       // Subir imagen si se selecciona
       if (this.selectedFile) {
-        const filePath = 'stock_images/${Date.now()}_${this.selectedFile.name}';
+        const filePath = `stock_images/${Date.now()}_${this.selectedFile.name}`;
         const fileRef = this.storage.ref(filePath);
         const uploadTask = this.storage.upload(filePath, this.selectedFile);
         uploadTask.snapshotChanges().pipe(
